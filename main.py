@@ -5,11 +5,11 @@ import sys
 import cv2
 
 
-# Sheet formats
-A1 = (594, 841)
-A2 = (420, 594)
-A3 = (297, 420)
-A4 = (297, 210)
+# Sheet formats in pixels with DPI = 300
+A1 = (7016, 9933)
+A2 = (4961, 7016)
+A3 = (3508, 4961)
+A4 = (3508, 2480)
 
 def command(command):
 
