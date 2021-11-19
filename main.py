@@ -11,15 +11,16 @@ A2 = (4961, 7016)
 A3 = (3508, 4961)
 A4 = (3508, 2480)
 
-def command(command):
 
-    os.system(command)
+def clear():
+    return os.system('clear')
 
 
-def exit():
-    command('clear')
+def ext():
+    clear()
     print('Exit')
     sys.exit(0)
+
 
 def get_image():
 
@@ -32,14 +33,10 @@ def get_image():
         print(f"{c} - {i}")
         c += 1
     while True:
-
         try:
-
             file = int(input())
-
         except KeyboardInterrupt:
-            exit()
-
+            ext()
         if file > len(files) - 1:
             print('Choice correct file!\n')
             continue
@@ -47,10 +44,11 @@ def get_image():
             return files[file]
             break
 
+
 def convert(file, size, scl):
 
     img = cv2.imread(f"./images/{file}", cv2.IMREAD_UNCHANGED)
-    command('clear')
+    clear()
 
     print('Original Dimensions: ', img.shape)
 
@@ -59,47 +57,42 @@ def convert(file, size, scl):
     print('Resized Dimensions: ', resized.shape)
 
     name = dt.datetime.now()
-
     path = os.getcwd()
     os.makedirs(f"{path}/converted", exist_ok=True)
     cv2.imwrite(os.path.join(f"{path}/converted", f"{scl}_{name}.jpg"), resized)
 
-    print(f"{scl}_{name}.jpg wroten into /converted")
+    print(f"{scl}_{name}.jpg wrote into /converted")
 
     time.sleep(2.5)
-    command('clear')
+    clear()
 
     return main()
 
-def main():
 
+def main():
     print("""What need to do?
             1 - Convert to A1
             2 - Convert to A2
             3 - Convert to A3
             4 - Convert to A4""")
+
     try:
-
         action = int(input())
-
     except KeyboardInterrupt:
-        exit()
+        ext()
 
     if action == 1:
         convert(get_image(), A1, 'A1')
-
     elif action == 2:
         convert(get_image(), A2, 'A2')
-
     elif action == 3:
         convert(get_image(), A3, 'A3')
-
     elif action == 4:
         convert(get_image(), A4, 'A4')
-
     else:
         return main()
 
+
 if __name__ == '__main__':
-    command('clear')
+    clear()
     main()
